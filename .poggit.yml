@@ -1,0 +1,8 @@
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/Awzaw/Translate
+branches:
+- master
+projects:
+  Translate:
+    path: ""
+    icon: translate.png
+...
