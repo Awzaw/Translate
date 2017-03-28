@@ -1,0 +1,9 @@
+# Config file for Translate by Awzaw
+# You MUST GET a free AZURE CloudServices API-Key from the WINDOWS AZURE CONSOLE
+# Full instructions at this link
+# http://docs.microsofttranslator.com/text-translate.html
+
+API-Key: ""
+languages: "ar, de, en, fi, fr, he, ht, hi, id, it, ja, ko, , ms, ur, es, ru, zh-CHS, zh-CHT"
+translate-to: "en"
+allow-console: "false"
