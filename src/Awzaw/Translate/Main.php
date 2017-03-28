@@ -68,7 +68,7 @@ class Main extends PluginBase implements Listener {
     public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
         switch(strtolower($command->getName())) {
             case "translate" || "tra":
-                if (!$this->allowConsole && $sender instanceof ConsoleCommandSender) {
+                if(!$this->allowConsole && $sender instanceof ConsoleCommandSender) {
                     $this->getLogger()->info("Enable allow-console in Translate config.yml to translate say on console");
                     return true;
                 }
@@ -88,7 +88,6 @@ class Main extends PluginBase implements Listener {
                     unset($this->enabled[strtolower($sender->getName())]);
                 } else {
                     $lang = isset($args[0]) ? $args[0] : $this->toLanguage;
-                    echo "Enabled for: " . $sender->getName() . "\n";
                     $this->enabled[strtolower($sender->getName())] = ["name" => strtolower($sender->getName()), "lang" => $lang];
                 }
 
@@ -227,7 +226,7 @@ class Main extends PluginBase implements Listener {
         if($this->debug) {
             fclose($out);
             $debug = ob_get_clean();
-            echo $debug;
+            $this->getLogger()->info($debug);
         }
         return $strResponse;
     }
@@ -251,7 +250,7 @@ class Main extends PluginBase implements Listener {
         if($this->debug) {
             fclose($out);
             $debug = ob_get_clean();
-            echo $debug;
+            $this->getLogger()->info($debug);
         }
 
         return $curlResponse;

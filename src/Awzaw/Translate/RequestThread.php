@@ -40,7 +40,7 @@ class RequestThread extends AsyncTask {
         array_splice($server->getPluginManager()->getPlugin("Translate")->queue, array_search($this->playerName, $server->getPluginManager()->getPlugin("Translate")->queue, true), 1);
     }
 
-    function curlRequest($url) : string {
+    function curlRequest($url): string {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
