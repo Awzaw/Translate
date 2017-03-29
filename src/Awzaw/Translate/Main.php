@@ -171,12 +171,15 @@ class Main extends PluginBase implements Listener {
         }
 
         if(strpos($translation, "toMessage") > 0) {
-            $this->getServer()->getPlayerExact($player)->sendMessage(TEXTFORMAT::RED . "Invalid From Language: /translate list shows all languages");
-            //$this->getLogger()->info($translation);
-
+            if  ($player === "console") {
+                $this->getLogger()->info("Invalid From Language: /translate list shows all languages");
+                $this->getLogger()->info("Translation stopped. Start with /translate");
+            } else {
+                $this->getServer()->getPlayerExact($player)->sendMessage(TEXTFORMAT::RED . "Invalid From Language: /translate list shows all languages");
+                $this->getServer()->getPlayerExact($player)->sendMessage(TEXTFORMAT::RED . "Translation stopped. Start with /translate");
+            }
             if(isset($this->enabled[$player])) {
                 unset($this->enabled[$player]);
-                $this->getServer()->getPlayerExact($player)->sendMessage(TEXTFORMAT::RED . "Translation stopped. Start with /translate");
             }
             return;
         }

@@ -3,12 +3,12 @@
 A PocketMine plugin to translate chat in real time using BING's free Translation API.
 
 Microsoft allow up to 2 million characters per month for free, beyond that you will be asked
-to upgrade from the FREE AZUR subscription, or disable the plugin until your quota is reset.
+to upgrade from the FREE AZURE subscription, or disable the plugin until your quota is reset.
 
 ###Installation:
 
 First get an API key: full instructions here http://docs.microsofttranslator.com/text-translate.html
-You'll need to create an AZUR account, prove your identity using a Credit Card (NOT FOR PAYMENT)
+You'll need to create an AZURE account, prove your identity using a Credit Card (NOT FOR PAYMENT)
 and follow the steps to get an API key.
 
 Next, drop the .phar file into your plugins folder, restart the server, then enter your API-Key between the quotes
