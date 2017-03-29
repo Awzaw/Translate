@@ -172,7 +172,7 @@ class Main extends PluginBase implements Listener {
 
         if(strpos($translation, "toMessage") > 0) {
             $this->getServer()->getPlayerExact($player)->sendMessage(TEXTFORMAT::RED . "Invalid From Language: /translate list shows all languages");
-            $this->getLogger()->info($translation);
+            //$this->getLogger()->info($translation);
 
             if(isset($this->enabled[$player])) {
                 unset($this->enabled[$player]);
