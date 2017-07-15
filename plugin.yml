@@ -1,7 +1,7 @@
 name: Translate
 main: Awzaw\Translate\Main
 version: 1.0.2
-api: [3.0.0-ALPHA5, 3.0.0-ALPHA6]
+api: [3.0.0-ALPHA7]
 author: Awzaw
 website: "http://jdcraft.net"
 load: POSTWORLD

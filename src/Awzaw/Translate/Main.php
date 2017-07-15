@@ -65,7 +65,7 @@ class Main extends PluginBase implements Listener {
 
     }
 
-    public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
+    public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool{
         switch(strtolower($command->getName())) {
             case "translate" || "tra":
                 if(!$this->allowConsole && $sender instanceof ConsoleCommandSender) {
