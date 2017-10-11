@@ -28,41 +28,41 @@ class Main extends PluginBase implements Listener {
 
     public function onEnable() {
 
-        if(file_exists($this->getDataFolder() . "config.yml")) {
-            $c = $this->getConfig()->getAll();
-            $this->toLanguage = $c["translate-to"] ?? "en";
-            $this->allowConsole = $c["allow-console"] === "true" ? true : false;
-            $this->languages = $c["languages"] ?? "ar, de, en, fi, fr, he, ht, hi, id, it, ja, ko, , ms, ur, es, ru, zh-CHS, zh-CHT";
-            $this->testStr = $c["test-string"] ?? "Bonjour tout le monde!";
-            if(isset($c["API-Key"])) {
-                if(trim($c["API-Key"]) != "") {
-                    $this->apikey = trim($c["API-Key"]);
-                } else {
-                    $this->getLogger()->info("Missing Windows AZURE API Key");
-                }
-            }
-        }
+		$this->saveDefaultConfig();
+		$c = $this->getConfig()->getAll();
 
-        $this->getServer()->getPluginManager()->registerEvents($this, $this);
-        $this->asp = $this->getServer()->getPluginManager()->getPlugin("AntiSpamPro");
-        if(!$this->asp) {
-            $this->getLogger()->info("Unable to find AntiSpamPro");
-        }
+		$this->toLanguage = $c["translate-to"] ?? "en";
+		$this->allowConsole = $c["allow-console"] === "true" ? true : false;
+		$this->languages = $c["languages"] ?? "ar, de, en, fi, fr, he, ht, hi, id, it, ja, ko, , ms, ur, es, ru, zh-CHS, zh-CHT";
+		$testStr = $c["test-string"] ?? "Bonjour tout le monde!";
+
+			if(isset($c["API-Key"]) && trim($c["API-Key"]) != ""){
+				$this->apikey = trim($c["API-Key"]);
+		}else{
+			$this->getLogger()->info(TextFormat::RED . "Missing Windows AZURE API Key");
+			$this->setEnabled(false);
+			return;
+		}
+
         try {
-
             $this->accessToken = $accessToken = $this->getToken($this->apikey);
 
-            $params = "text=" . urlencode($this->testStr) . "&to=" . $this->toLanguage . "&appId=Bearer+" . $accessToken;
+            $params = "text=" . urlencode($testStr) . "&to=" . $this->toLanguage . "&appId=Bearer+" . $accessToken;
             $translateUrl = "http://api.microsofttranslator.com/v2/Http.svc/Translate?$params";
             $curlResponse = $this->curlRequest($translateUrl);
 
             $translated = strip_tags($curlResponse);
-            $this->getLogger()->info("Translation Working... " . $this->testStr . " : " . $translated);
+            $this->getLogger()->info("Translation Working... " . $testStr . " : " . $translated);
 
         } catch(Exception $e) {
             $this->getLogger()->info("Exception: " . $e->getMessage() . PHP_EOL);
+			$this->setEnabled(false);
         }
-
+		$this->asp = $this->getServer()->getPluginManager()->getPlugin("AntiSpamPro");
+		if(!$this->asp) {
+			$this->getLogger()->info("Unable to find AntiSpamPro");
+		}
+		$this->getServer()->getPluginManager()->registerEvents($this, $this);
     }
 
     public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool{
@@ -200,7 +200,7 @@ class Main extends PluginBase implements Listener {
         return;
     }
 
-    function getToken($azure_key) {
+    private function getToken($azure_key) {
         $ch = curl_init();
 
         if($this->debug) {
@@ -234,7 +234,7 @@ class Main extends PluginBase implements Listener {
         return $strResponse;
     }
 
-    function curlRequest($url) {
+    private function curlRequest($url) {
         $ch = curl_init();
 
         if($this->debug) {
