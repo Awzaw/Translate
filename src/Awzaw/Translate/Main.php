@@ -123,7 +123,7 @@ class Main extends PluginBase implements Listener{
 
 		$this->queue[] = strtolower($event->getPlayer()->getName());
 		$query = new RequestThread($this->accessToken, strtolower($event->getPlayer()->getName()), $message, $this->enabled[strtolower($event->getPlayer()->getName())]["lang"]);
-		$this->getServer()->getScheduler()->scheduleAsyncTask($query);
+		Server::getInstance()->getAsyncPool()->submitTask($query);
 	}
 
 	public function onServerCommand(ServerCommandEvent $event){
@@ -144,7 +144,7 @@ class Main extends PluginBase implements Listener{
 		$message = substr($message, 4);
 		$this->queue[] = strtolower($name);
 		$query = new RequestThread($this->accessToken, strtolower($name), $message, $this->enabled[strtolower($name)]["lang"]);
-		$this->getServer()->getScheduler()->scheduleAsyncTask($query);
+		Server::getInstance()->getAsyncPool()->submitTask($query);
 	}
 
 
@@ -166,7 +166,7 @@ class Main extends PluginBase implements Listener{
 			// Try again
 			$this->queue[] = $player;
 			$query = new RequestThread($this->accessToken, $player, $totranslate, $this->enabled[$player]["lang"]);
-			$this->getServer()->getScheduler()->scheduleAsyncTask($query);
+			Server::getInstance()->getAsyncPool()->submitTask($query);
 			return;
 		}
 
