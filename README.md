@@ -7,7 +7,7 @@ to upgrade from the FREE AZURE subscription, or disable the plugin until your qu
 
 #### Installation
 
-First get an API key: full instructions here http://docs.microsofttranslator.com/text-translate.html
+First get an API key: https://azure.microsoft.com/en-us/pricing/details/cognitive-services/translator-text-api/
 You'll need to create an AZURE account, prove your identity using a Credit Card (NOT FOR PAYMENT)
 and follow the steps to get an API key.
 
