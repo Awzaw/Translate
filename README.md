@@ -9,7 +9,7 @@ to upgrade from the FREE AZURE subscription, or disable the plugin until your qu
 
 First get an API key: https://azure.microsoft.com/en-us/pricing/details/cognitive-services/translator-text-api/
 You'll need to create an AZURE account, prove your identity using a Credit Card (NOT FOR PAYMENT)
-and follow the steps to get an API key.
+and follow the steps to get an API key. Full sign up instructions are to be found here : https://docs.microsoft.com/en-us/azure/cognitive-services/translator/translator-text-how-to-signup
 
 Next, drop the .phar file into your plugins folder, restart the server, then enter your API-Key between the quotes
 in the config.yml that was created in the 'plugins/Translate' folder. Restart again, and you should be up and running.
